@@ -1,4 +1,7 @@
 <?php //key 5630e9d9b0msh9b877ae893c4f04p16ec19jsnd7c28e790cb7 
+
+use LDAP\Result;
+
 ?>
 <?php
 
@@ -27,6 +30,14 @@ curl_close($curl);
 if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
-	  //var_dump(json_decode($response)->results);
-    echo $response;
+      $movies = json_decode($response)->results;
+      foreach ($movies as $movie) {
+          if($movie->primaryImage->url && $movie->primaryImage){
+            print_r($movie->primaryImage->url);
+            echo '<br>';
+            print_r($movie->primaryImage->caption->plainText);
+            echo '<br>';
+          }
+      }
+
 }
