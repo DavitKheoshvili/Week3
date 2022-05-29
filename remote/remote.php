@@ -5,7 +5,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, [
-	CURLOPT_URL => "https://moviesdatabase.p.rapidapi.com/titles/search/title/matrix?page=3&info=mini_info&limit=10&titleType=movie",
+	CURLOPT_URL => "https://moviesdatabase.p.rapidapi.com/titles/search/title/".$_POST['name']."?page=1&info=mini_info&limit=10&titleType=movie",
 	CURLOPT_RETURNTRANSFER => true,
 	CURLOPT_FOLLOWLOCATION => true,
 	CURLOPT_ENCODING => "",
@@ -27,6 +27,6 @@ curl_close($curl);
 if ($err) {
 	echo "cURL Error #:" . $err;
 } else {
-	 echo $response;
-
+	  //var_dump(json_decode($response)->results);
+    echo $response;
 }
